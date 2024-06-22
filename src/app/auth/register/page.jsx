@@ -30,7 +30,19 @@ function RegisterPage() {
             })
     
             const resJSON = await res.json()
-            console.log(resJSON)
+
+            // verificaciones de usuario existente
+            if (resJSON.message == "Username already exists") {
+                setError("username", {
+                    type: "manual",
+                    message: "Username already exists"
+                })
+            } else if (resJSON.message == "Email already exists") {
+                setError("email", {
+                    type: "manual",
+                    message: "Email already exists"
+                })
+            }
         }
     })
 
